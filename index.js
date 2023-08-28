@@ -2,6 +2,8 @@ import express from "express";
 import cors from "cors"
 import { conn } from "./src/connections/database.js";
 import authRouter from "./src/routes/authrouter.js"
+import venueRouter from "./src/routes/venuerouter.js"
+import bookingRouter from "./src/routes/bookingrouter.js"
 
 //basic requirement for Connections
 const app=express()
@@ -16,6 +18,8 @@ conn
 
 //Routers for server and database
 app.use("/",authRouter)
+app.use("/",venueRouter)
+app.use("/",bookingRouter)
 
 //healthcheck for checking the server
 app.get("/healthcheck",(req,res)=>{
