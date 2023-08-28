@@ -4,8 +4,8 @@ const bookingSchema=new mongoose.Schema(
     {
         userdata:{type:mongoose.Schema.Types.ObjectId,ref:"user"},
         venuedata:{type:mongoose.Schema.Types.ObjectId,ref:"venue"},
-        startdateandtime:Date,
-        enddateandtime:Date,
+        startdateandtime:String,
+        enddateandtime:String,
     }
 )
 
