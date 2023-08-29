@@ -14,8 +14,10 @@ try
 const tempFilePath = 'temp_image.jpg';
 fs.writeFileSync(tempFilePath, req.file.buffer);
 const result = await cloudinary.uploader.upload(tempFilePath,{ resource_type: 'auto' });
-res.json({success:true ,data:result.secure_url}).status(200)
 fs.unlinkSync(tempFilePath);
+const newvenuedata=new VenueSchema({...req.body,image:result.secure_url})
+await newvenuedata.save()
+res.json({success:true ,data:result.secure_url}).status(200)
 }
 catch(error)
 {
