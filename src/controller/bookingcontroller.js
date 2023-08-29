@@ -3,22 +3,22 @@ import BookingSchema from "../models/bookingmodel.js";
 const addbooking=async(req,res)=>{
     try
     {
-    const isExistbookingstart=await BookingSchema.findOne({venuedata:req.body.venuedata,startdateandtime:{$lte:req.body.startdateandtime},enddateandtime:{$gte:req.body.startdateandtime}})
+    const isExistbookingstart=await BookingSchema.findOne({venuedata:req.body.data.venuedata,startdateandtime:{$lte:req.body.data.startdateandtime},enddateandtime:{$gte:req.body.data.startdateandtime}})
     if(isExistbookingstart)
-    res.status(400).json({success:false,data:"Already have a Booking",startdate:isExistbookingstart.startdateandtime,enddate:isExistbookingstart.enddateandtime})
+    res.status(200).json({success:false,data:"Already have a Booking",startdate:isExistbookingstart.startdateandtime,enddate:isExistbookingstart.enddateandtime})
     else
     {
-        const isExistbookingend=await BookingSchema.findOne({venuedata:req.body.venuedata,startdateandtime:{$lte:req.body.enddateandtime},enddateandtime:{$gte:req.body.enddateandtime}})
+        const isExistbookingend=await BookingSchema.findOne({venuedata:req.body.data.venuedata,startdateandtime:{$lte:req.body.data.enddateandtime},enddateandtime:{$gte:req.body.data.enddateandtime}})
         if(isExistbookingend)
-        res.status(400).json({success:false,data:"Already have a Booking",startdate:isExistbookingend.startdateandtime,enddate:isExistbookingend.enddateandtime})
+        res.status(200).json({success:false,data:"Already have a Booking",startdate:isExistbookingend.startdateandtime,enddate:isExistbookingend.enddateandtime})
         else
         {
-        const isExistbookingbetween=await BookingSchema.findOne({venuedata:req.body.venuedata,startdateandtime:{$gte:req.body.startdateandtime},enddateandtime:{$lte:req.body.enddateandtime}})
+        const isExistbookingbetween=await BookingSchema.findOne({venuedata:req.body.data.venuedata,startdateandtime:{$gte:req.body.data.startdateandtime},enddateandtime:{$lte:req.body.data.enddateandtime}})
         if(isExistbookingbetween)
-        res.status(400).json({success:false,data:"Already have a Booking",startdate:isExistbookingbetween.startdateandtime,enddate:isExistbookingbetween.enddateandtime})
+        res.status(200).json({success:false,data:"Already have a Booking",startdate:isExistbookingbetween.startdateandtime,enddate:isExistbookingbetween.enddateandtime})
         else
         {
-            const newbooking=new BookingSchema(req.body)
+            const newbooking=new BookingSchema(req.body.data)
             await newbooking.save()
             res.status(200).json({success:true,data:newbooking})
         }
@@ -35,12 +35,12 @@ const addbooking=async(req,res)=>{
 const viewbooking=async(req,res)=>{
     try
     {
-    const bookings=await BookingSchema.find().populate("venuedata").populate("userdata")
+    const bookings=await BookingSchema.find({venuedata:req.body.venuedata}).populate("venuedata").populate("userdata")
     res.status(200).json({success:true,data:bookings})
     }
     catch(error)
     {
-    res.status(401).json({sucess:false,data:error.message})
+    res.status(200).json({sucess:false,data:error.message})
     }
 }
 

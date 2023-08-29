@@ -6,6 +6,9 @@ const bookingSchema=new mongoose.Schema(
         venuedata:{type:mongoose.Schema.Types.ObjectId,ref:"venue"},
         startdateandtime:String,
         enddateandtime:String,
+        programname:String,
+        personname:String,
+        semdept:String,
     }
 )
 

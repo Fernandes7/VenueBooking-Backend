@@ -26,4 +26,17 @@ catch(error)
     
 }
 
-export {addvenue}
+
+const getallvenue=async(req,res)=>{
+try
+{
+const allvenue=await VenueSchema.find()
+res.status(200).json({success:true,data:allvenue})
+}
+catch(error)
+{
+    res.status(200).json({success:false,message:error.message})
+}
+}
+
+export {addvenue,getallvenue}
