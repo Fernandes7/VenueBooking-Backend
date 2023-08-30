@@ -44,4 +44,29 @@ const viewbooking=async(req,res)=>{
     }
 }
 
-export {addbooking,viewbooking}
+const viewbookingbyuserid=async(req,res)=>{
+    try
+    {
+    const bookings=await BookingSchema.find({userdata:req.body.userdata}).populate("venuedata").populate("userdata")
+    res.status(200).json({success:true,data:bookings})
+    }
+    catch(error)
+    {
+    res.status(200).json({sucess:false,data:error.message})
+    }
+}
+
+const deletebookingbyuserid=async(req,res)=>{
+    try{
+        const dele=await BookingSchema.findByIdAndDelete({_id:req.body._id})
+        res.status(200).json({success:true,data:"Successfully Deleted"})
+    }
+    catch(error)
+    {
+        res.status(200).json({success:false,message:error.message})
+    }
+}
+
+
+
+export {addbooking,viewbooking,viewbookingbyuserid,deletebookingbyuserid}

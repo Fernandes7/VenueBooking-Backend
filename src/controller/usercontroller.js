@@ -17,6 +17,7 @@ const signup=async(req,res)=>{
             userdateofbirth:req.body.data.userdateofbirth,
             usersecurityquestion:req.body.data.usersecurityquestion,
             usersecurityquestionans:req.body.data.usersecurityquestionans,
+            isAdmin:false
         })
         try{
             await newuserdata.save()
