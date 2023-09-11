@@ -9,6 +9,10 @@ const bookingSchema=new mongoose.Schema(
         programname:String,
         personname:String,
         semdept:String,
+        projector:Boolean,
+        soundandmic:Boolean,
+        connectionitem:Boolean,
+        remarks:String
     }
 )
 

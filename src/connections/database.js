@@ -1,6 +1,8 @@
 import mongoose from "mongoose";
+import dotenv from "dotenv"
 
-mongoose.connect("mongodb+srv://Ferno:123@cluster0.wqriud4.mongodb.net/VenuBookingChrist");
+dotenv.config()
+mongoose.connect(process.env.DATABASEURL);
 const conn = mongoose.connection;
 conn.on("error", (err) =>
   console.log(`error in connnection to database ${err}`)

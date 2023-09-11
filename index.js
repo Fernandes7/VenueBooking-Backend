@@ -4,10 +4,12 @@ import { conn } from "./src/connections/database.js";
 import authRouter from "./src/routes/authrouter.js"
 import venueRouter from "./src/routes/venuerouter.js"
 import bookingRouter from "./src/routes/bookingrouter.js"
+import dotenv from "dotenv"
 
 //basic requirement for Connections
+dotenv.config()
 const app=express()
-const PORT=8000
+const PORT=process.env.PORTNO
 
 //middlewares
 app.use(cors())

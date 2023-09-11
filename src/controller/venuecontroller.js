@@ -1,11 +1,13 @@
 import VenueSchema from "../models/venuemodel.js";
 import {v2 as cloudinary} from 'cloudinary';
 import fs from "fs"
+import dotenv from "dotenv"
 
+dotenv.config()
 cloudinary.config({ 
-    cloud_name: 'dnvq4niny', 
-    api_key: '771215485756261', 
-    api_secret: '2H9YL-EtkOLOSlMWnRuD0gsSM5k'
+    cloud_name: process.env.CLOUDNAME, 
+    api_key: process.env.CLOUDAPIKEY, 
+    api_secret: process.env.CLOUDAPISECREAT
   });
 
 const addvenue=async(req,res)=>{

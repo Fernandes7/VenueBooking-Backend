@@ -1,5 +1,7 @@
 import jwt from "jsonwebtoken";
+import dotenv from "dotenv"
 
+dotenv.config()
 const verifytoken=(req,res,next)=>{
     const authHeader=req.headers["authorization"]
     const token=authHeader && authHeader.split(" ")[1]
@@ -9,7 +11,7 @@ const verifytoken=(req,res,next)=>{
     {
         try
         {
-           const verifyoutput=jwt.verify(token,"mysecreatkey")
+           const verifyoutput=jwt.verify(token,process.env.JWTSECREAT)
            req.user=verifyoutput
            next()
         }
