@@ -8,6 +8,8 @@ const bookingSchema=new mongoose.Schema(
         enddateandtime:String,
         programname:String,
         personname:String,
+        noofstudents:Number,
+        phoneno:String,
         semdept:String,
         projector:Boolean,
         soundandmic:Boolean,
