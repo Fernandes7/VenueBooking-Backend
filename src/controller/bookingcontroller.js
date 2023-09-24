@@ -47,7 +47,7 @@ const viewbooking=async(req,res)=>{
 const viewallbooking=async(req,res)=>{
     try
     {
-    const bookings=await BookingSchema.find().populate("venuedata").populate("userdata")
+    const bookings=await BookingSchema.find().populate("venuedata")
     res.status(200).json({success:true,data:bookings})
     }
     catch(error)
