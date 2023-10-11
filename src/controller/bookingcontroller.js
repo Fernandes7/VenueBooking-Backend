@@ -50,7 +50,6 @@ const viewallbooking=async(req,res)=>{
     {
     const timezone = 'Asia/Kolkata';
     const currentdateandtime = moment().tz(timezone);
-    console.log(currentdateandtime.toISOString())
     const outdatedbookings= await BookingSchema.find({enddateandtime:{$lt:currentdateandtime.toISOString()}})
     for(const items of outdatedbookings)
     {
