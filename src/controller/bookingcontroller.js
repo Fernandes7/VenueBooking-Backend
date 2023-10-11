@@ -1,4 +1,5 @@
 import BookingSchema from "../models/bookingmodel.js";
+import moment from "moment-timezone";
 
 const addbooking=async(req,res)=>{
     try
@@ -47,6 +48,14 @@ const viewbooking=async(req,res)=>{
 const viewallbooking=async(req,res)=>{
     try
     {
+    const timezone = 'Asia/Kolkata';
+    const currentdateandtime = moment().tz(timezone);
+    console.log(currentdateandtime.toISOString())
+    const outdatedbookings= await BookingSchema.find({enddateandtime:{$lt:currentdateandtime.toISOString()}})
+    for(const items of outdatedbookings)
+    {
+        await BookingSchema.findByIdAndDelete(items._id)
+    }
     const bookings=await BookingSchema.find().populate("venuedata")
     res.status(200).json({success:true,data:bookings})
     }
