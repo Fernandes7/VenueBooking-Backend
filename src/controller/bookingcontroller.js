@@ -53,7 +53,7 @@ const viewallbooking=async(req,res)=>{
     const outdatedbookings= await BookingSchema.find({enddateandtime:{$lt:currentdateandtime.toISOString()}})
     for(const items of outdatedbookings)
     {
-        await BookingSchema.findByIdAndDelete(items._id)
+        await BookingSchema.findByIdAndUpdate(items._id,{isoutdated:true})
     }
     const bookings=await BookingSchema.find().populate("venuedata")
     res.status(200).json({success:true,data:bookings})

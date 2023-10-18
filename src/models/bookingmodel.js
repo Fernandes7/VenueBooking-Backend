@@ -14,7 +14,8 @@ const bookingSchema=new mongoose.Schema(
         projector:Boolean,
         soundandmic:Boolean,
         connectionitem:Boolean,
-        remarks:String
+        remarks:String,
+        isoutdated:false
     }
 )
 
