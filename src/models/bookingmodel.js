@@ -15,7 +15,7 @@ const bookingSchema=new mongoose.Schema(
         soundandmic:Boolean,
         connectionitem:Boolean,
         remarks:String,
-        isoutdated:false
+        isoutdated:{type:Boolean,default:false}
     }
 )
 
