@@ -6,6 +6,10 @@ const router=express.Router()
 
 router.post("/addvenue",upload.single("image"),addvenue)
 router.get("/getallvenue",getallvenue)
+router.get("/ping",(req,res)=>{
+    res.send("pong")
+}
+)
 
 export default router
 

@@ -1,0 +1,14 @@
+version: '3'
+
+services:
+  # Node.js application
+  node-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: venue_booking_backend
+    container_name: venue_booking_backend
+    ports:
+      - "8000:8000"
+    restart: always
+

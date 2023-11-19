@@ -9,3 +9,10 @@ conn.on("error", (err) =>
 );
 conn.once("open", () => console.log("connection to Database successful"));
 export { conn };
+
+
+
+
+
+
+
