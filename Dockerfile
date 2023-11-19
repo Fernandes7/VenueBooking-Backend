@@ -1,20 +1,18 @@
-# Use an official Node.js runtime as a base image
-FROM node:14
 
-# Set the working directory in the container
-WORKDIR /usr/src/app
+FROM node:10-alpine
 
-# Copy package.json and package-lock.json to the working directory
+RUN mkdir -p /home/node/app/node_modules && chown -R node:node /home/node/app
+
+WORKDIR /home/node/app
+
 COPY package*.json ./
 
-# Install application dependencies
+USER node
+
 RUN npm install
 
-# Copy the application code to the container
-COPY . .
+COPY --chown=node:node . .
 
-# Expose the port on which the app will run
-EXPOSE 8000
+EXPOSE 8080
 
-# Define the command to run the application
-CMD ["node", "app.js"]
+CMD [ "node", "app.js" ]
