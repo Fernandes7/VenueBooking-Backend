@@ -1,4 +1,4 @@
-FROM node:10-alpine
+FROM node:14-alpine
 
 # Create the app directory
 WORKDIR /home/node/app
@@ -6,7 +6,6 @@ WORKDIR /home/node/app
 # Copy package files
 COPY package*.json ./
 
-# Install app dependencies
 RUN npm install
 
 # Bundle app source
